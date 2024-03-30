@@ -56,6 +56,9 @@ def draw_l_system(
         if instruction == "F":
             # Move forward
             new_pos = turtle_pos + length * turtle_heading
+            # Plotting the line for each command is a performance bottleneck;
+            # however, we can't plot all lines at once because the 'b' command
+            # would not be able to move the turtle without leaving a trail.
             ax.plot(
                 [turtle_pos[0], new_pos[0]],
                 [turtle_pos[1], new_pos[1]],
@@ -83,7 +86,7 @@ def draw_l_system(
     return fig
 
 
-def main():
+def main() -> None:
     st.title("L-Systems")
     set_plt_theme()
 
